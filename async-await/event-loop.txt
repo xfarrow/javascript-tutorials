@@ -1,0 +1,3 @@
+JavaScript is single-threaded (but note that NodeJS is not entirely single-threaded, as it internally mantains a thread pool), but it can still take advantage of asynchronous programming.
+
+The Event Loop, which is a JavaScript construct that completes a new task while waiting for another

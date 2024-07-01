@@ -40,6 +40,15 @@ function entryPoint () {
         Executing action: something
         Time of completion: Sun Jun 30 2024
         I don't need execute_action's value
+
+    Callbacks are usually meant for asynchronous programming. When
+    we meet a function that accepts a callback, it is likely an
+    asynchronous function, such as time, such as
+    setTimeout(callback, delay).
+
+    The problem is that this makes the code harder to read
+    so modern JS is written using Promises and async/await
+    constructs.
     
   */
   
