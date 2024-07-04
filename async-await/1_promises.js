@@ -10,43 +10,49 @@
 
     A Promise can be in one of these three states:
     - Pending (the operation is being processed)
-    - Fullfilled (the operation has completed successfully)
-    - Rejected 
+    - Fullfilled (the operation has completed successfully, resolve has been called)
+    - Rejected (the operation has not completed successfully, reject has been called)
 */
 const promise = new Promise(function (resolve, reject) {
-    setTimeout(() => resolve('done'), 500);
-  });
+  setTimeout(() => resolve('done'), 5000);
+});
   
-  /*
-      The first argument of .then is a function that runs when the promise is resolved and receives the result.
-      The second argument of .then is a function that runs when the promise is rejected and receives the error.
-      The function passed to "then()" is put in the event loop queue!
-  */
-  promise.then(
-    result => console.log('The operation was successful. It returned ' + result),
-    error => console.log('The operation was not successful: ' + error)
-  );
+/*
+    The first argument of .then is a function that runs when the promise is resolved and receives the result.
+    The second argument of .then is a function that runs when the promise is rejected and receives the error.
+    The function passed to "then()" is put in the event loop queue!
+*/
+promise.then(
+  result => console.log('The operation was successful. It returned ' + result),
+  error => console.log('The operation was not successful: ' + error)
+);
   
-  /*
-      Or we can pass only one argument if we're interested only in a positive result
-  */
-  promise.then(
-    result => console.log('The operation was successful. It returned ' + result)
-  );
+/*
+  Or we can pass only one argument if we're interested only in a positive result
+*/
+promise.then(
+  result => console.log('The operation was successful. It returned ' + result)
+);
   
-  /*
-      Or we can pass only one argument to the method "catch" if we're interested
-      in negative results only.
+/*
+    Or we can pass only one argument to the method "catch" if we're interested
+    in negative results only.
   
-      promise.catch internally just calls promise.then(null, f)
-  */
-  promise.catch(
-    error => console.log(error)
-  );
+    promise.catch internally just calls promise.then(null, f)
+*/
+promise.catch(
+  error => console.log(error)
+);
   
-  /*
-      finally gets always called
-  */
-  promise.finally(
-    () => console.log('The execution has terminated. Bye')
-  );
+/*
+  finally gets always called
+*/
+promise.finally(
+  () => console.log('The execution has terminated. Bye')
+);
+
+/*
+  This line is used to demonstrate that the code within "then, catch, etc."
+  is in the event loop, as this is the first line getting executed.
+*/
+console.log("Last line");
