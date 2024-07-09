@@ -46,6 +46,9 @@ function entryPoint () {
     asynchronous function, such as time, such as
     setTimeout(callback, delay).
 
+    Callbacks are not asynchronous by nature, but can be used 
+    for asynchronous purposes.
+
     The problem is that this makes the code harder to read
     so modern JS is written using Promises and async/await
     constructs.

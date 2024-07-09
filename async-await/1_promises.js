@@ -12,6 +12,10 @@
     - Pending (the operation is being processed)
     - Fullfilled (the operation has completed successfully, resolve has been called)
     - Rejected (the operation has not completed successfully, reject has been called)
+
+    A promise represents the completion of a (likely) asynchronous function. It is an object 
+    that might return a value in the future. It accomplishes the same basic goal as a
+    callback function, but with many additional features and a more readable syntax.
 */
 const promise = new Promise(function (resolve, reject) {
   setTimeout(() => resolve('done'), 5000);
@@ -20,7 +24,7 @@ const promise = new Promise(function (resolve, reject) {
 /*
     The first argument of .then is a function that runs when the promise is resolved and receives the result.
     The second argument of .then is a function that runs when the promise is rejected and receives the error.
-    The function passed to "then()" is put in the event loop queue!
+    The function passed to "then()" is put in the queue!
 */
 promise.then(
   result => console.log('The operation was successful. It returned ' + result),
