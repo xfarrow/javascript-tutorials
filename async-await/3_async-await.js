@@ -4,23 +4,23 @@
 // Async and await are merely syntactic sugar in order to make Promise usage easier
 
 async function f1 () {
-    return 1;
+  return 1
 }
-  
-f1().then(console.log); // 1
-  
+
+f1().then(console.log) // 1
+
 // The keyword await makes JavaScript wait until that promise settles and returns its result.
 // It can be used in async functions only.
 // Let’s emphasize: await literally suspends the function execution until the promise settles,
 // and then resumes it with the promise result.
 async function f2 () {
   const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('done!'), 1000);
-  });
-  const result = await promise; // wait until the promise resolves (*)
-  console.log(result); // "done!"
+    setTimeout(() => resolve('done!'), 1000)
+  })
+  const result = await promise // wait until the promise resolves (*)
+  console.log(result) // "done!"
 }
-f2();
+f2()
 
 // The code in the same function after "await"
 // is to be intended in the "then()" of the primise. This means
@@ -28,15 +28,15 @@ f2();
 // the flow of execution goes out that code block. For example
 // consider the following example:
 async function exampleAsyncFunction () {
-  console.log('Before await');
+  console.log('Before await')
   await new Promise(function (resolve, reject) {
-    setTimeout(() => resolve('done'), 500);
-  }); // Pauses execution here until the promise resolves.
-  console.log('After await');
+    setTimeout(() => resolve('done'), 500)
+  }) // Pauses execution here until the promise resolves.
+  console.log('After await')
 }
-console.log('Start');
-exampleAsyncFunction();
-console.log('End');
+console.log('Start')
+exampleAsyncFunction()
+console.log('End')
 
 // The result will be:
 //  Start, Before Await, End, After await
