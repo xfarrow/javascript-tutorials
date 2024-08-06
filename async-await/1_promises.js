@@ -2,7 +2,7 @@
 
 /*
     The function passed to Promise is called "executor"
-    and gets executed synchronously the moment the Promise is created.
+    and gets executed synchronously and immediately after the Promise is created.
     When the Promise ends, the callback function should 
     either call the "resolve" or "reject" callbacks:
     resolve(value) — if the job is finished successfully, with result value.
@@ -24,7 +24,7 @@ const promise = new Promise(function (resolve, reject) {
 /*
     The first argument of .then is a function that runs when the promise is resolved and receives the result.
     The second argument of .then is a function that runs when the promise is rejected and receives the error.
-    The function passed to "then()" is put in the queue!
+    The function passed to "then()" is put in the Event Loop queue.
 */
 promise.then(
   result => console.log('The operation was successful. It returned ' + result),
