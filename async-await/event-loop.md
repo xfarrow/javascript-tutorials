@@ -16,7 +16,6 @@ examples:
 
 2. 
 ```javascript
-  
   const promise = new Promise(function (resolve, reject) {
   console.log('test');
   resolve();
@@ -25,4 +24,4 @@ examples:
 });
 
 ```
-console.log('test2') will be put in the Event Loop. 
+`console.log('test2')` will be put in the Event Loop. 
