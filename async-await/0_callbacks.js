@@ -43,7 +43,7 @@ function entryPoint () {
 
     Callbacks are usually meant for asynchronous programming. When
     we meet a function that accepts a callback, it is likely an
-    asynchronous function, such as time, such as
+    asynchronous function, such as
     setTimeout(callback, delay).
 
     Callbacks are not asynchronous by nature, but can be used 

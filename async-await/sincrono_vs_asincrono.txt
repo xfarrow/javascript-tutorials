@@ -4,9 +4,9 @@ https://stackoverflow.com/questions/7131991/asynchronous-and-synchronous-terms
 
 La parola "sincrono" in contesto informatico vuol dire "sincronizzato", ovvero
 il chiamante deve aspettare la risposta del chiamato, mentre
-"async" vuol dire "non sincronizzato". 
-Ciò vuol dire sincronizzato (o NON sincronizzato) con altre porzioni di codice.
-La definizione da dizionario invece differisce. 
+"async" vuol dire "non sincronizzato".
+Ciò vuol dire (non)/sincronizzato con altre porzioni di codice.
+La definizione da dizionario invece differisce.
 Per Treccani: "Sincrono: Che avviene nello stesso momento",
 mentre sappiamo che un'operazione sincrona rispetto ad un'altra
 non avviene allo stesso tempo.
