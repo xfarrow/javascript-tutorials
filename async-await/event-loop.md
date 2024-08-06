@@ -10,11 +10,9 @@ examples:
 1. 
 
 ```javascript
-  
   setTimeout(() => console.log('test'), 1000);
-
 ```
-console.log('test') will be put in the Event Loop.
+`console.log('test')` will be put in the Event Loop.
 
 2. 
 ```javascript
