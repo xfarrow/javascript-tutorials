@@ -4,9 +4,11 @@ JavaScript is single-threaded but it can still take advantage of asynchronous
 programming.
 
 When we say JavaScript is single-threaded, we mean that we cannot write
-multithread code without using JavaScript APIs. In fact,
+multithread/concurrent code without using JavaScript APIs. In fact,
 despite for us it appears single-threaded, it takes advantage of the
 `libuv` library, allowing the engine to be effectively multithread.
+
+Another way to put it is that we have one and only one Call Stack.
 
 In order to do that, JavaScript uses
 * The libuv APIs which allow multithreading
@@ -43,3 +45,8 @@ When 1000ms have elapsed, the callback function associated with the timer (conso
 gets enqueued in the Queue.
 Since there is nothing to do in the stack, the callback pushes the callback onto the
 stack and executes it.
+
+## Useful resources
+* https://www.youtube.com/watch?v=lqLSNG_79lI
+* https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif
+* https://www.youtube.com/watch?v=eiC58R16hb8
