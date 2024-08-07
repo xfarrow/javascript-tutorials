@@ -15,10 +15,14 @@ In order to do that, JavaScript uses
 ## Explaination
 JavaScript provides a set of APIs, including `setTimeout` and `fetch`, which
 are offloaded to the libuv library when called. The libuv library handles the 
-underlying operations, such as timer management and HTTP requests, respectively. 
-Both setTimeout and fetch have associated functions, known as callbacks, that
-are executed once the operation has completed.
+underlying operations, such as timer management and HTTP requests, respectively.
 
+While `libuv` performs these operations, our JavaScript code continues its
+execution, without being blocked. That's why we said that the engine is
+multithreaded.
+
+Both `setTimeout` and `fetch` have associated functions, known as callbacks, that
+are executed once the operation has completed.
 Since the engine cannot directly push these callback functions onto the call stack
 without disrupting the current flow of execution, it instead places them in a 
 queue called the "Event Loop Queue". When the call stack is empty, the engine
@@ -32,7 +36,7 @@ console.log('I am in the stack');
 ```
 
 What is happening here? `setTimeout` is a JavaScript API which will be taken care
-of the `libuv` library which will be responsible for checking when 1000ms have passed.
+of by the `libuv` library which will be responsible for checking when 1000ms have passed.
 **Concurrently** to the `libuv` library doing what it has to do, the engine executes
 `console.log('I am in the stack');`.
 When 1000ms have elapsed, the callback function associated with the timer (console.log)
