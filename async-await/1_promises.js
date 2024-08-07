@@ -24,7 +24,6 @@ const promise = new Promise(function (resolve, reject) {
 /*
     The first argument of .then is a function that runs when the promise is resolved and receives the result.
     The second argument of .then is a function that runs when the promise is rejected and receives the error.
-    The function passed to "then()" is put in the Event Loop queue.
 */
 promise.then(
   result => console.log('The operation was successful. It returned ' + result),
