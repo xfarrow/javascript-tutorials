@@ -39,7 +39,7 @@ console.log('I am in the stack');
 
 What is happening here? `setTimeout` is a JavaScript API which will be taken care
 of by the `libuv` library which will be responsible for checking when 1000ms have passed.
-**Concurrently** to the `libuv` library doing what it has to do, the engine executes
+**Concurrently**, the engine executes
 `console.log('I am in the stack');`.
 When 1000ms have elapsed, the callback function associated with the timer (console.log)
 gets enqueued in the Queue.
