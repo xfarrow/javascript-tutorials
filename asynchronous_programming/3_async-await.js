@@ -41,8 +41,10 @@ console.log('End')
 // The result will be:
 //  Start, Before Await, End, After await
 // "End" comes before "After Await" because the
-// flow of execution goes to the caller
-// when await is invoked.
+// flow of execution goes to the caller of exampleAsyncFunction
+// because "setTimeout(() => resolve('done'), 500)" gets enqueued in
+// the Event Loop Thread and "console.log('After await')" can be executed
+// only when the promise has resolved.
 
 // Questions
 //
