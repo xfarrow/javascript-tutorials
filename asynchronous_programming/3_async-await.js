@@ -23,14 +23,13 @@ async function f2 () {
 f2()
 
 // The code in the same function after "await"
-// is to be intended in the "then()" of the primise. This means
-// that after await (but before the completion of the Promise),
-// the flow of execution goes out that code block. For example
-// consider the following example:
+// is to be intended in the "then()" of the promise.
+// Consider the following example:
 async function exampleAsyncFunction () {
   console.log('Before await')
   await new Promise(function (resolve, reject) {
-    setTimeout(() => resolve('done'), 500)
+    console.log("In the Promise")
+    setTimeout(() => resolve(), 500)
   }) // Pauses execution here until the promise resolves.
   console.log('After await')
 }
@@ -38,13 +37,52 @@ console.log('Start')
 exampleAsyncFunction()
 console.log('End')
 
-// The result will be:
-//  Start, Before Await, End, After await
-// "End" comes before "After Await" because the
-// flow of execution goes to the caller of exampleAsyncFunction
-// because "setTimeout(() => resolve('done'), 500)" gets enqueued in
-// the Event Loop Thread and "console.log('After await')" can be executed
-// only when the promise has resolved.
+/*
+
+The result will be:
+Start, Before Await, In the Promise, End, After await
+"End" comes before "After Await" because the
+flow of execution goes to the caller of exampleAsyncFunction
+after setTimeout() gets enqueued in the Event Loop Thread
+but before 500ms have elapsed.
+
++---------------+
+| Main          |
++---------------+
+       |
+       |
+       v
++----------------------+
+|exampleAsyncFunction  |
++----------------------+
+       |
+       |
+       v
++---------------+
+| Promise       |
++---------------+
+       |
+       |
+       v
++----------------------------------------+
+|Enqueue resolve() and exit immediately  |                                  +--------------------------------+
++----------------------------------------+ -------------------------------> |Wait 500ms in the libuv library |
+       |                                                                    +--------------------------------+
+       | Nothing left to do in the AWAIT, return to caller                              |
+       v                                                                                |
++---------------+                                                                       |
+| Main          |                                                                       |
++---------------+                                                                       |
+       |                                                                                |
+       |                                                                                |   
+       v                                                                                |
++-------------------+                                                                   |
+| Then() of Promise |       <-----------------------------------------------------------
++-------------------+                                                                                                                                                                           
+                        
+
+
+*/
 
 // Questions
 //
